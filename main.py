@@ -100,6 +100,12 @@ def main(setup: dict):
                         series_val = page.query_selector('#id_divBlock_Main > table:nth-child(1) > tbody > tr:nth-child(3) > td > div:nth-child(1) > table > tbody > tr > td > a').inner_text().split()[0]
                     elif series_val == 'Town':
                         series_val = 'City'
+                    elif series_val == 'Space':
+                        try:
+                            if catalog_line[3].inner_text() == 'Galaxy Squad':
+                                series_val = 'Galaxy Squad'
+                        except:
+                            series_val = 'Space'
                 except Exception as e:
                     print(f'Ошибка при работе с артикулом {articles[idx].value} (https://www.bricklink.com/v2/catalog/catalogitem.page?S={articles[idx].value}#T=P')
                     qty_res.append([None])
